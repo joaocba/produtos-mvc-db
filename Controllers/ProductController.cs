@@ -16,8 +16,52 @@ public class ProductController : Controller
         _context = context;
     }
 
+    // Obter todos os produtos
+    [HttpGet()]
+    public async Task<IActionResult> Index()
+    {
+        var produtos = await _context.Products.ToListAsync();
+        return View(produtos);
+    }
+
+    // Ver pagina de produto
+    [HttpGet("{id}")]
+    public async Task<IActionResult> Details(int id)
+    {
+        var produto = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+        if (produto == null)
+            return NotFound();
+        return View(produto);
+    }
+
+    // Calculo de Estatisticas dos Produtos
+    [HttpGet("stats")]
+    public async Task<IActionResult> Stats()
+    {
+        var products = await _context.Products.ToListAsync();
+
+        var totalProducts = products.Count();
+        var averagePrice = products.Any() ? products.Average(p => p.Price) : 0;
+        var inStockCount = products.Count(p => p.InStock);
+        var outOfStockCount = products.Count(p => !p.InStock);
+
+        var stats = new
+        {
+            TotalProducts = totalProducts,
+            AveragePrice = averagePrice,
+            InStockCount = inStockCount,
+            OutOfStockCount = outOfStockCount
+        };
+
+        return View(stats);
+    }
+
+
+
+
+    // APIS
     // Todos os Produtos
-    [HttpGet]
+    [HttpGet("api/v1")]
     public async Task<IActionResult> TodosProdutos()
     {
         var produtos = await _context.Products.ToListAsync();
@@ -25,7 +69,7 @@ public class ProductController : Controller
     }
 
     // Produtos por Status
-    [HttpGet("em-stock/{status}")]
+    [HttpGet("api/v1/em-stock/{status}")]
     public async Task<IActionResult> ProdutosPorStock(bool status)
     {
         var filteredProducts = await _context.Products.Where(p => p.InStock == status).ToListAsync();
@@ -33,7 +77,7 @@ public class ProductController : Controller
     }
 
     // Produtos Acima de um Valor
-    [HttpGet("acima-preco/{minPrice}")]
+    [HttpGet("api/v1/acima-preco/{minPrice}")]
     public async Task<IActionResult> ProdutosAcimaPreco(double minPrice)
     {
         var filteredProducts = await _context.Products.Where(p => p.Price >= minPrice).ToListAsync();
@@ -41,7 +85,7 @@ public class ProductController : Controller
     }
 
     // Obter produto por ID
-    [HttpGet("{id}")]
+    [HttpGet("api/v1/{id}")]
     public async Task<IActionResult> ProdutoIndividual(int id)
     {
         var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
@@ -51,7 +95,7 @@ public class ProductController : Controller
     }
 
     // Adicionar Produto
-    [HttpPost]
+    [HttpPost("api/v1")]
     public async Task<IActionResult> AdicionarProduto([FromBody] Product produto)
     {
         if (produto == null)
@@ -64,7 +108,7 @@ public class ProductController : Controller
     }
 
     // Alterar Produto
-    [HttpPut("{id}")]
+    [HttpPut("api/v1/{id}")]
     public async Task<IActionResult> AlterarProduto(int id, [FromBody] Product updatedProduct)
     {
         var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
@@ -84,7 +128,7 @@ public class ProductController : Controller
     }
 
     // Remover Produto
-    [HttpDelete("{id}")]
+    [HttpDelete("api/v1/{id}")]
     public async Task<IActionResult> EliminarProduto(int id)
     {
         var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);

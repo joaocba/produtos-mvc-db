@@ -1,0 +1,43 @@
+@model dynamic
+
+@{
+    ViewData["Title"] = "Product Statistics";
+}
+
+<section id="product-stats" class="container mt-5">
+    <h1 class="text-center mb-4">@ViewData["Title"]</h1>
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm border-0 text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Total Products</h5>
+                    <p class="card-text display-4">@Model.TotalProducts</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm border-0 text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Average Price</h5>
+                    <p class="card-text display-4">€ @Model.AveragePrice.ToString("0.00")</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm border-0 text-center">
+                <div class="card-body">
+                    <h5 class="card-title">In Stock</h5>
+                    <p class="card-text display-4">@Model.InStockCount</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm border-0 text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Out of Stock</h5>
+                    <p class="card-text display-4">@Model.OutOfStockCount</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

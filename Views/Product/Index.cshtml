@@ -1,0 +1,55 @@
+@model IEnumerable<ProdutosMVC.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<section id="product-list">
+    <h1 class="text-center mb-4">@ViewData["Title"]</h1>
+    <div class="table-container">
+        <div class="table-wrapper">
+            <div class="container">
+                <div class="row justify-content-end mt-4">
+                    <div class="col-auto">
+                        <a class="px-3 btn btn-primary btn-sm" asp-action="Stats">View Statistics</a>
+                    </div>
+                </div>
+            </div>
+
+            <table class="table table-borderless">
+                <thead>
+                    <tr>
+                        <th class="product-name col-4">Product Name</th>
+                        <th class="col-1">Price</th>
+                        <th class="col-1">In Stock</th>
+                        <th class="col-1">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="product-name">
+                                <img src="https://placehold.co/60" alt="Product Image" class="product-image">
+                                @item.Name
+                            </td>
+                            <td>
+                                <span class="product-price">€ @item.Price</span>
+                            </td>
+                            <td>
+                                <span class="stock-tag @(item.InStock ? "in-stock" : "out-of-stock")">
+                                    <i class="fas @(item.InStock ? "fa-check" : "fa-times")"></i>
+                                </span>
+                            </td>
+                            <td>
+                                <a class="px-3 btn btn-primary btn-sm" asp-action="Details" asp-route-id="@item.Id">
+                                    <i class="fas fa-magnifying-glass"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

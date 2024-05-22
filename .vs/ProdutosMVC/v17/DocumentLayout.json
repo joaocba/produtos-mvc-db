@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\blakw\\Desktop\\Citeforma\\UFCDs\\9372-10792\\16mai24\\produtos-mvc-db\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4720383A-9548-4EFD-8989-D54FEDA39E9C}|ProdutosMVC.csproj|c:\\users\\blakw\\desktop\\citeforma\\ufcds\\9372-10792\\16mai24\\produtos-mvc-db\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4720383A-9548-4EFD-8989-D54FEDA39E9C}|ProdutosMVC.csproj|solutionrelative:models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Employee.cs",
+              "DocumentMoniker": "C:\\Users\\blakw\\Desktop\\Citeforma\\UFCDs\\9372-10792\\16mai24\\produtos-mvc-db\\Models\\Employee.cs",
+              "RelativeDocumentMoniker": "Models\\Employee.cs",
+              "ToolTip": "C:\\Users\\blakw\\Desktop\\Citeforma\\UFCDs\\9372-10792\\16mai24\\produtos-mvc-db\\Models\\Employee.cs",
+              "RelativeToolTip": "Models\\Employee.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-16T14:59:50.778Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
