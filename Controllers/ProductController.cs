@@ -56,6 +56,83 @@ public class ProductController : Controller
         return View(stats);
     }
 
+    // Adicionar Produto
+    [HttpGet("create")]
+    public IActionResult Create()
+    {
+        return View();
+    }
+
+    [HttpPost("create")]
+    public async Task<IActionResult> Create(Product product)
+    {
+        if (ModelState.IsValid)
+        {
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Details), new { id = product.Id });
+        }
+        return StatusCode(400, "Product not valid.");
+    }
+
+    // Editar Produto
+    [HttpGet("edit/{id}")]
+    public async Task<IActionResult> Edit(int id)
+    {
+        var product = await _context.Products.FindAsync(id);
+        if (product == null)
+        {
+            return NotFound();
+        }
+        return View(product);
+    }
+
+    // POST: Product/Edit/5
+    [HttpPost("edit/{id}")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(int id, Product product)
+    {
+        if (id != product.Id)
+        {
+            return NotFound();
+        }
+
+        if (ModelState.IsValid)
+        {
+            _context.Update(product);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        return View(product);
+    }
+
+    // Eliminar Produto
+    [HttpGet("delete/{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+        if (product == null)
+        {
+            return NotFound();
+        }
+        return View(product);
+    }
+
+    // POST: Product/Delete/5
+    [HttpPost("delete/{id}"), ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteConfirmed(int id)
+    {
+        var product = await _context.Products.FindAsync(id);
+        if (product == null)
+        {
+            return NotFound();
+        }
+
+        _context.Products.Remove(product);
+        await _context.SaveChangesAsync();
+        return RedirectToAction(nameof(Index));
+    }
 
 
 

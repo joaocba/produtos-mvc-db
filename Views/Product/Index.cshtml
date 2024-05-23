@@ -11,7 +11,12 @@
             <div class="container">
                 <div class="row justify-content-end mt-4">
                     <div class="col-auto">
-                        <a class="px-3 btn btn-primary btn-sm" asp-action="Stats">View Statistics</a>
+                        <a class="px-3 btn btn-primary btn-sm" asp-action="Create">
+                            <i class="fas fa-plus-circle"></i> Create Product
+                        </a>
+                        <a class="px-3 btn btn-primary btn-sm" asp-action="Stats">
+                            <i class="fas fa-chart-bar"></i> View Statistics
+                        </a>
                     </div>
                 </div>
             </div>
@@ -42,10 +47,22 @@
                                 </span>
                             </td>
                             <td>
-                                <a class="px-3 btn btn-primary btn-sm" asp-action="Details" asp-route-id="@item.Id">
-                                    <i class="fas fa-magnifying-glass"></i>
-                                </a>
+                                <div class="btn-group" role="group" aria-label="Product Actions">
+                                    <a class="btn btn-outline-primary btn-sm" asp-action="Details" asp-route-id="@item.Id"
+                                        title="View Details">
+                                        <i class="fas fa-search"></i>
+                                    </a>
+                                    <a class="btn btn-outline-success btn-sm" asp-action="Edit" asp-route-id="@item.Id"
+                                        title="Edit Product">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a class="btn btn-outline-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"
+                                        title="Delete Product">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </div>
                             </td>
+
                         </tr>
                     }
                 </tbody>

@@ -1,0 +1,56 @@
+@model ProdutosMVC.Models.Product
+
+@{
+    ViewBag.Title = "Edit Product";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-10">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-dark text-white">
+                    <h4 class="mb-0">Edit Product</h4>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Edit" class="needs-validation" novalidate>
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label">Product Name</label>
+                            <div class="input-group">
+                                <input asp-for="Name" class="form-control" placeholder="Enter product name" />
+                            </div>
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Price" class="form-label">Price</label>
+                            <div class="input-group">
+                                <input asp-for="Price" class="form-control" placeholder="Enter price" />
+                            </div>
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label">Description</label>
+                            <div class="input-group">
+                                <textarea asp-for="Description" class="form-control"
+                                    placeholder="Enter product description"></textarea>
+                            </div>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="InStock" class="form-label">In Stock</label>
+                            <div class="input-group">
+                                <select asp-for="InStock" class="form-select">
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                </select>
+                            </div>
+                            <span asp-validation-for="InStock" class="text-danger"></span>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-dark">Edit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
